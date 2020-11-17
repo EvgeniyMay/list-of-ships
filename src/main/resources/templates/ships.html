@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Welcome</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" type="text/css" th:href="@{css/ships.css}"/> 
+</head>
+<body>
+<div class="wrapper">
+	<div class="content">
+		<h1>Ships List</h1>
+		<table>
+			<tr>
+				<th>Name</th>
+				<th>Class</th>
+				<th>Faction</th>
+				<th>Classification</th>
+				<th>Image</th>
+			</tr>
+			<tr th:each="ship : ${ships}">
+				<td th:text="${ship.name}"></td>
+				<td th:text="${ship.className}"></td>
+				<td th:text="${ship.faction}"></td>
+				<td th:text="${ship.classification}"></td>
+				<td><img class="ship_img" th:src="${ship.imgLink}"></td>
+			</tr>
+		</table>
+		<a th:href="@{ships/add}">Add</a>
+	</div>
+</div>
+</body>
+</html>

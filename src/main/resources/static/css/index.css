@@ -1,0 +1,28 @@
+@import "reset.css";
+
+.wrapper {
+	height: 100vh;
+	background-color: #200772;
+}
+
+.content {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+h1 {
+	color: #FFFF00;
+	font-size: 80px;
+}
+
+h2 {
+	color: #FFFF40;
+	font-size: 60px;
+}
+
+a {
+	color: #FFAA00;
+	font-size: 60px;
+}

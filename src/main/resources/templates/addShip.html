@@ -1,0 +1,24 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Welcome</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<div class="wrapper">
+	<div class="content">
+	
+		<h2>NewShip</h2>
+		<a th:href="@{/ships}">Back</a>
+		<form th:action="@{add}" method="POST">
+		<label>Name: <input type="text" name="name" /></label>
+		<label>Class: <input type="text" name="className" /></label>
+		<label>Faction: <input type="text" name="faction" /></label>
+		<label>Classification: <input type="text" name="classification" /></label>
+		<label>Image link: <input type="text" name="imgLink" /></label>
+		<button type="submit">Add</button>
+		</form>
+	</div>
+</div>
+</body>
+</html>
