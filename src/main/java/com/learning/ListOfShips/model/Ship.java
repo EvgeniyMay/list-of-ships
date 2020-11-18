@@ -28,26 +28,16 @@ public class Ship {
 	@Column(name="classification")
 	private String classification;
 	
-	@Column(name="imgLink")
-	private String imgLink;
 	
 	public Ship() {
 		
 	}
 	
-	public Ship(int id, String name, String shipClass, String faction, String classification, String imgLink) {
-		this.id = id;
-		this.name = name;
-		this.className = shipClass;
-		this.faction = faction;
-		this.classification = classification;
-		this.imgLink = imgLink;
-	}
 	
 	@Override
 	public String toString() {
 		return "Ship [id=" + id + ", name=" + name + ", shipClass=" + className + ", faction=" + faction
-				+ ", classification=" + classification + ", imgLink=" + imgLink + "]";
+				+ ", classification=" + classification + "]";
 	}
 	
 	public int getId() {
@@ -83,12 +73,5 @@ public class Ship {
 	}
 	public void setClassification(String classification) {
 		this.classification = classification;
-	}
-	
-	public String getImgLink() {
-		return imgLink;
-	}
-	public void setImgLink(String imgLink) {
-		this.imgLink = imgLink;
 	}
 }

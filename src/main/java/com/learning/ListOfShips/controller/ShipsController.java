@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.learning.ListOfShips.model.Ship;
 import com.learning.ListOfShips.repository.ShipRepository;
@@ -24,35 +23,33 @@ public class ShipsController {
 	}
 	
 	
-	@GetMapping()
+	@GetMapping("list")
 	public String getAllShips(Model model) {
 		model.addAttribute("ships", shipRepository.findAll());
 		
-		return "ships";
+		return "ships/shipsList";
 	}
 	
 	@GetMapping("/add")
 	public String GetAddNewShip() {
 		
-		return "addShip";
+		return "ships/addShip";
 	}
 	@PostMapping("/add")
 	public String PostAddNewShip(
 			@RequestParam(name="name")String name,
 			@RequestParam(name="className")String className,
 			@RequestParam(name="faction")String faction,
-			@RequestParam(name="classification")String classification,
-			@RequestParam(name="imgLink")String imgLink) {
+			@RequestParam(name="classification")String classification){
 		Ship ship = new Ship();
 		ship.setName(name);
 		ship.setClassName(className);
 		ship.setFaction(faction);
 		ship.setClassification(classification);
-		ship.setImgLink(imgLink);
 		
 		shipRepository.save(ship);
 		
-		return "redirect:/ships";
+		return "redirect:list";
 	}
 	
 }
