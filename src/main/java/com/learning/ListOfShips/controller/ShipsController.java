@@ -24,18 +24,13 @@ public class ShipsController {
 	}
 	
 	
-	@GetMapping("list")
+	@GetMapping("/list")
 	public String getAllShips(Model model) {
 		model.addAttribute("ships", shipRepository.findAll());
 		
 		return "ships/shipsList";
 	}
 	
-	@GetMapping("/add")
-	public String addShipPage() {
-		
-		return "ships/addShip";
-	}
 	@PostMapping("/add")
 	public String addShip(
 			@RequestParam(name="name")String name,
