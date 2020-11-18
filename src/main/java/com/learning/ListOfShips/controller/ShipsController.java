@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -31,12 +32,12 @@ public class ShipsController {
 	}
 	
 	@GetMapping("/add")
-	public String GetAddNewShip() {
+	public String addShipPage() {
 		
 		return "ships/addShip";
 	}
 	@PostMapping("/add")
-	public String PostAddNewShip(
+	public String addShip(
 			@RequestParam(name="name")String name,
 			@RequestParam(name="className")String className,
 			@RequestParam(name="faction")String faction,
@@ -50,6 +51,15 @@ public class ShipsController {
 		shipRepository.save(ship);
 		
 		return "redirect:list";
+	}
+	
+	@GetMapping("/delete/{id}")
+	public String deleteShip(
+			@PathVariable("id")int id) {
+		
+		shipRepository.deleteById(id);
+		
+		return "redirect:/ships/list";
 	}
 	
 }

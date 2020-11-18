@@ -15,12 +15,14 @@
 				<th>Class</th>
 				<th>Faction</th>
 				<th>Classification</th>
+				<th>Delete</th>
 			</tr>
 			<tr th:each="ship : ${ships}">
 				<td th:text="${ship.name}"></td>
 				<td th:text="${ship.className}"></td>
 				<td th:text="${ship.faction}"></td>
 				<td th:text="${ship.classification}"></td>
+				<td><a th:href="@{'delete/' + ${ship.id}}" th:text="Delete"></a></td>
 			</tr>
 		</table>
 		<a th:href="@{add}">Add</a>
