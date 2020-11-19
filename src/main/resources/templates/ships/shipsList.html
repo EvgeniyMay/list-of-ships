@@ -23,6 +23,7 @@
 					<td th:text="${ship.className}"></td>
 					<td th:text="${ship.faction}"></td>
 					<td th:text="${ship.classification}"></td>
+					<td><a th:href="@{'edit/' +${ship.id}}" th:text="Edit"></a></td>
 					<td><a th:href="@{'delete/' + ${ship.id}}" th:text="Delete"></a></td>
 				</tr>
 			</table>

@@ -1,5 +1,7 @@
 package com.learning.ListOfShips.controller;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -36,7 +38,7 @@ public class ShipsController {
 			@RequestParam(name="name")String name,
 			@RequestParam(name="className")String className,
 			@RequestParam(name="faction")String faction,
-			@RequestParam(name="classification")String classification){
+			@RequestParam(name="classification")String classification) {
 		Ship ship = new Ship();
 		ship.setName(name);
 		ship.setClassName(className);
@@ -48,9 +50,45 @@ public class ShipsController {
 		return "redirect:list";
 	}
 	
+	@GetMapping("/edit/{id}")
+	public String getEditShipPage(@PathVariable("id")int id, Model model) {
+		Optional<Ship> optionalShip = shipRepository.findById(id);
+		
+		if(!optionalShip.isPresent()) {
+			return "redirect:/ships/list";
+		}
+		
+		Ship ship = optionalShip.get();
+		
+		model.addAttribute("name", ship.getName());
+		model.addAttribute("className", ship.getClassName());
+		model.addAttribute("faction", ship.getFaction());
+		model.addAttribute("classification", ship.getClassification());
+		
+		return "ships/edit";
+	}
+	
+	@PostMapping("/edit/{id}")
+	public String saveEditShip(@PathVariable("id")int id,
+			@RequestParam(name="name")String name,
+			@RequestParam(name="className")String className,
+			@RequestParam(name="faction")String faction,
+			@RequestParam(name="classification")String classification) {
+	
+		Ship shipToChange = shipRepository.findById(id).get();
+	
+		shipToChange.setName(name);
+		shipToChange.setClassName(className);
+		shipToChange.setFaction(faction);
+		shipToChange.setClassification(classification);
+		
+		shipRepository.save(shipToChange);
+		
+		return "redirect:/ships/list";
+	}
+	
 	@GetMapping("/delete/{id}")
-	public String deleteShip(
-			@PathVariable("id")int id) {
+	public String deleteShip(@PathVariable("id")int id) {
 		
 		shipRepository.deleteById(id);
 		
