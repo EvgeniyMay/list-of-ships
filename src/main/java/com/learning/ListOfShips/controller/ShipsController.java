@@ -15,7 +15,7 @@ import com.learning.ListOfShips.model.Ship;
 import com.learning.ListOfShips.repository.ShipRepository;
 
 @Controller
-@RequestMapping(path = "/ships")
+@RequestMapping(path = "ships")
 public class ShipsController {
 	
 	private ShipRepository shipRepository;
@@ -26,14 +26,14 @@ public class ShipsController {
 	}
 	
 	
-	@GetMapping("/list")
+	@GetMapping("list")
 	public String getAllShips(Model model) {
 		model.addAttribute("ships", shipRepository.findAll());
 		
 		return "ships/shipsList";
 	}
 	
-	@PostMapping("/add")
+	@PostMapping("add")
 	public String addShip(
 			@RequestParam(name="name")String name,
 			@RequestParam(name="className")String className,
@@ -50,7 +50,7 @@ public class ShipsController {
 		return "redirect:list";
 	}
 	
-	@GetMapping("/edit/{id}")
+	@GetMapping("edit/{id}")
 	public String getEditShipPage(@PathVariable("id")int id, Model model) {
 		Optional<Ship> optionalShip = shipRepository.findById(id);
 		
@@ -68,7 +68,7 @@ public class ShipsController {
 		return "ships/edit";
 	}
 	
-	@PostMapping("/edit/{id}")
+	@PostMapping("edit/{id}")
 	public String saveEditShip(@PathVariable("id")int id,
 			@RequestParam(name="name")String name,
 			@RequestParam(name="className")String className,
@@ -87,7 +87,7 @@ public class ShipsController {
 		return "redirect:/ships/list";
 	}
 	
-	@GetMapping("/delete/{id}")
+	@GetMapping("delete/{id}")
 	public String deleteShip(@PathVariable("id")int id) {
 		
 		shipRepository.deleteById(id);
